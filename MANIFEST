@@ -1,4 +1,3 @@
-Build.PL
 Changes
 lib/Catalyst/Plugin/Compress/Deflate.pm
 lib/Catalyst/Plugin/Compress/Gzip.pm

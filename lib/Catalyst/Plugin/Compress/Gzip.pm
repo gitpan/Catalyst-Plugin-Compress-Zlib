@@ -19,7 +19,7 @@ sub finalize {
         return $c->NEXT::finalize;
     }
 
-    unless ( $c->response->content_type =~ /^text/ ) {
+    unless ( $c->response->content_type =~ /^text|xml$|javascript$/ ) {
         return $c->NEXT::finalize;
     }
 

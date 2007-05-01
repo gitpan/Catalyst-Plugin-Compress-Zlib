@@ -6,7 +6,6 @@ author:
 abstract: Zlib Compression for Catalyst
 license: perl
 requires:
-  Catalyst: 5
   Compress::Zlib: 0
 provides:
   Catalyst::Plugin::Compress::Deflate:
