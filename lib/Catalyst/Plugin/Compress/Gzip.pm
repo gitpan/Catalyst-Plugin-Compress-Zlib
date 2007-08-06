@@ -29,7 +29,11 @@ sub finalize {
         return $c->NEXT::finalize;
     }
 
-    $c->response->body( Compress::Zlib::memGzip( $c->response->body ) );
+   my $body = $c->response->body;
+   eval { local $/; $body = <$body> } if ref $body;
+   die "Response body is an unsupported kind of reference" if ref $body;
+
+    $c->response->body( Compress::Zlib::memGzip( $body ) );
     $c->response->content_length( length( $c->response->body ) );
     $c->response->content_encoding('gzip');
     $c->response->headers->push_header( 'Vary', 'Accept-Encoding' );

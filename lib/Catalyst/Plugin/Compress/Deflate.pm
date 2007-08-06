@@ -39,6 +39,9 @@ sub finalize {
         die("Cannot create a deflation stream. Error: $status");
     }
 
+    my $body = $c->response->body;
+    eval { local $/; $body = <$body> } if ref $body;
+    die "Response body is an unsupported kind of reference" if ref $body;
     ( $out, $status ) = $d->deflate( $c->response->body );
 
     unless ( $status == Compress::Zlib::Z_OK() ) {

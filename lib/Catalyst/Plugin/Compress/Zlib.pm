@@ -3,7 +3,7 @@ package Catalyst::Plugin::Compress::Zlib;
 use strict;
 use base 'Catalyst::Plugin::Compress::Gzip';
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 1;
 

@@ -1,8 +1,12 @@
 Revision history for Perl extension Catalyst::Plugin::Compress::Zlib
 
+0.03  2007-08-06 18:22
+        - Add support for FH body.
+        - Fix lack of inc/
+
 0.02  2007-04-29 02:25
         - Compress Content-Type that matches /^text|xml$|javascript$/
-		- Switch to Module::Install
+        - Switch to Module::Install
 
 0.01  Wed Apr 28 01:00:00 2005
         - original version.
