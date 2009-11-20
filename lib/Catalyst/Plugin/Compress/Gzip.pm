@@ -1,6 +1,7 @@
 package Catalyst::Plugin::Compress::Gzip;
-
 use strict;
+use warnings;
+use MRO::Compat;
 
 use Compress::Zlib ();
 
@@ -8,25 +9,25 @@ sub finalize {
     my $c = shift;
 
     if ( $c->response->content_encoding ) {
-        return $c->NEXT::finalize;
+        return $c->next::method(@_);
     }
 
     unless ( $c->response->body ) {
-        return $c->NEXT::finalize;
+        return $c->next::method(@_);
     }
 
     unless ( $c->response->status == 200 ) {
-        return $c->NEXT::finalize;
+        return $c->next::method(@_);
     }
 
     unless ( $c->response->content_type =~ /^text|xml$|javascript$/ ) {
-        return $c->NEXT::finalize;
+        return $c->next::method(@_);
     }
 
     my $accept = $c->request->header('Accept-Encoding') || '';
 
     unless ( index( $accept, "gzip" ) >= 0 ) {
-        return $c->NEXT::finalize;
+        return $c->next::method(@_);
     }
 
    my $body = $c->response->body;
@@ -38,7 +39,7 @@ sub finalize {
     $c->response->content_encoding('gzip');
     $c->response->headers->push_header( 'Vary', 'Accept-Encoding' );
 
-    $c->NEXT::finalize;
+    $c->next::method(@_);
 }
 
 1;
@@ -57,6 +58,10 @@ Catalyst::Plugin::Compress::Gzip - Gzip response
 =head1 DESCRIPTION
 
 Gzip compress response if client supports it.
+
+=head1 METHODS
+
+=head2 finalize
 
 =head1 SEE ALSO
 

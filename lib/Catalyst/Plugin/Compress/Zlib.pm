@@ -1,9 +1,9 @@
 package Catalyst::Plugin::Compress::Zlib;
-
 use strict;
+use warnings;
 use base 'Catalyst::Plugin::Compress::Gzip';
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 1;
 

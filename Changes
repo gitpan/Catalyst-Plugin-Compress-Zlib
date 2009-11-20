@@ -1,5 +1,10 @@
 Revision history for Perl extension Catalyst::Plugin::Compress::Zlib
 
+0.04  2009-11-20 01:20
+        - Update Module::Install version
+        - Remove Build.PL
+        - Switch from NEXT to MRO::Compat
+
 0.03  2007-08-06 18:22
         - Add support for FH body.
         - Fix lack of inc/

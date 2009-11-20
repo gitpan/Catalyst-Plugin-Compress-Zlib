@@ -1,6 +1,7 @@
 package Catalyst::Plugin::Compress::Deflate;
-
 use strict;
+use warnings;
+use MRO::Compat;
 
 use Compress::Zlib ();
 
@@ -8,25 +9,25 @@ sub finalize {
     my $c = shift;
 
     if ( $c->response->content_encoding ) {
-        return $c->NEXT::finalize;
+        return $c->next::method(@_);
     }
 
     unless ( $c->response->body ) {
-        return $c->NEXT::finalize;
+        return $c->next::method(@_);
     }
 
     unless ( $c->response->status == 200 ) {
-        return $c->NEXT::finalize;
+        return $c->next::method;
     }
 
     unless ( $c->response->content_type =~ /^text|xml$|javascript$/ ) {
-        return $c->NEXT::finalize;
+        return $c->next::method;
     }
 
     my $accept = $c->request->header('Accept-Encoding') || '';
 
     unless ( index( $accept, "deflate" ) >= 0 ) {
-        return $c->NEXT::finalize;
+        return $c->next::method;
     }
 
     my ( $d, $out, $status, $deflated );
@@ -63,7 +64,7 @@ sub finalize {
     $c->response->content_encoding('deflate');
     $c->response->headers->push_header( 'Vary', 'Accept-Encoding' );
 
-    $c->NEXT::finalize;
+    $c->next::method;
 }
 
 1;
@@ -82,6 +83,10 @@ Catalyst::Plugin::Compress::Deflate - Deflate response
 =head1 DESCRIPTION
 
 Deflate compress response if client supports it.
+
+=head1 METHODS
+
+=head2 finalize
 
 =head1 SEE ALSO
 
