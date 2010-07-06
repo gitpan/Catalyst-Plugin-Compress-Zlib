@@ -1,5 +1,8 @@
 Revision history for Perl extension Catalyst::Plugin::Compress::Zlib
 
+0.05  2010-07-06 10:12
+        - Deprecated in favour of Catalyst::Plugin::Compress
+
 0.04  2009-11-20 01:20
         - Update Module::Install version
         - Remove Build.PL

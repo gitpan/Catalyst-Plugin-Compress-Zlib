@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use base 'Catalyst::Plugin::Compress::Gzip';
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 1;
 
@@ -11,15 +11,17 @@ __END__
 
 =head1 NAME
 
-Catalyst::Plugin::Compress::Zlib - Zlib Compression for Catalyst
+Catalyst::Plugin::Compress::Zlib - DEPRECATED Zlib Compression for Catalyst
 
 =head1 SYNOPSIS
 
-    use Catalyst qw[Compress::Gzip];
-
-    use Catalyst qw[Compress::Deflate];
+    use Catalyst qw[Compress::Zlib];
+    # NOTE - DEPRECATED, supported for legacy applications,
+    #        but use Catalyst::Plugin::Compress in new code.
 
 =head1 DESCRIPTION
+
+B<DEPRECATED> - supported for legacy applications, but useL<Catalyst::Plugin::Compress> in new code.
 
 Compress response if client supports it.
 
